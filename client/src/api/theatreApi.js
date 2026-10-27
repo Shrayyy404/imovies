@@ -1,13 +1,5 @@
-import api from './axios.js';
-
+import { DEMO_CITIES, DEMO_THEATRE } from './demoData.js';
 export const theatreApi = {
-  getCities: async () => {
-    const res = await api.get('/theatres/cities');
-    return res.data;
-  },
-
-  getTheatres: async (params = {}) => {
-    const res = await api.get('/theatres', { params });
-    return res.data;
-  },
+  getCities: async () => ({ success: true, data: DEMO_CITIES }),
+  getTheatres: async ({ city } = {}) => ({ success: true, data: [{ ...DEMO_THEATRE, city: city || DEMO_CITIES[0] }] }),
 };

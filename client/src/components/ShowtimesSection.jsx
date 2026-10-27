@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Building2, MapPin } from 'lucide-react';
 import DateTabs from './DateTabs.jsx';
 import ShowtimeButton from './ShowtimeButton.jsx';
@@ -10,7 +9,6 @@ import { formatToYYYYMMDD } from '../utils/format.js';
 
 export default function ShowtimesSection({ groupedTheatres = [], loading = false }) {
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
   const { selectedCity } = useCity();
 
   // Extract distinct future dates that actually have shows across all theatres
@@ -37,11 +35,7 @@ export default function ShowtimesSection({ groupedTheatres = [], loading = false
   }, [availableDates, selectedDate]);
 
   const handleShowtimeSelect = (showId) => {
-    if (user) {
-      navigate(`/shows/${showId}/seats`);
-    } else {
-      navigate('/login', { state: { from: `/shows/${showId}/seats` } });
-    }
+    navigate(`/shows/${showId}/seats`);
   };
 
   if (loading) {

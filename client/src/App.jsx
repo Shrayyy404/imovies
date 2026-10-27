@@ -63,33 +63,10 @@ function SiteLayout() {
             <Route path="/movies/:id" element={<MovieDetailPage />} />
             <Route path="/login" element={<LoginPage />} />
 
-            {/* Protected seat booking routes */}
-            <Route
-              path="/shows/:showId/seats"
-              element={
-                <ProtectedRoute>
-                  <SeatPickerPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/checkout/:bookingId"
-              element={
-                <ProtectedRoute>
-                  <CheckoutPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/booking/:id/confirmation"
-              element={
-                <ProtectedRoute>
-                  <BookingConfirmationPage />
-                </ProtectedRoute>
-              }
-            />
+            {/* Demo booking routes are public: no login, backend, or payment required. */}
+            <Route path="/shows/:showId/seats" element={<SeatPickerPage />} />
+            <Route path="/checkout/:bookingId" element={<CheckoutPage />} />
+            <Route path="/booking/:id/confirmation" element={<BookingConfirmationPage />} />
 
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
